@@ -17,7 +17,7 @@ WATCHRULE ?= run
 all: $(BLDDIR) bin check doc
 
 bin: $(BLDDIR)
-	@$(CC) $(CFLAGS) $(LDFLAGS) $(SOURCES) -DVERSION="\"$(VER)\n\"" -o $(BLDDIR)/$(PROGNM)
+	@$(CC) $(CFLAGS) $(SOURCES) -DVERSION="\"$(VER)\n\"" -o $(BLDDIR)/$(PROGNM) $(LDFLAGS)
 
 check: $(BLDDIR)/$(PROGNM)
 	@(if [ -x ./test-suite ]; then RUNCMD=$(RUNCMD) ./test-suite; else true; fi)
