@@ -8,6 +8,7 @@ BSHDIR ?= $(PKGDIR)/share/bash-completions
 RTDIR  ?= $(PWD)
 MKDIR  ?= mkdir -p
 RUNCMD ?= ./$(BLDDIR)/$(PROGNM)
+TAGDIRS ?= src
 SOURCES ?= $(wildcard src/*.c)
 WATCHDIRS ?= src doc
 WATCHRULE ?= run
@@ -53,6 +54,9 @@ run: bin
 
 scan-build:
 	@scan-build --use-cc=$(CC) make bin
+
+tags:
+	@find $(TAGDIRS) -type f -iname '*.[ch]' | xargs ctags -a -f $@
 
 verify:
 	@frama-c $(FMFLAGS) src/*.c
